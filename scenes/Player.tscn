@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://kbh147qj4xd3"]
+
+[ext_resource type="Script" uid="uid://bwxxs68rqdk38" path="res://scenes/player.gd" id="1_rpqav"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0rwas"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:is_moving")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D" unique_id=1648897997]
+script = ExtResource("1_rpqav")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1429907876]
+mesh = SubResource("CapsuleMesh_xhfnw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1554884124]
+shape = SubResource("CapsuleShape3D_kpjcp")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1144025344]
+replication_config = SubResource("SceneReplicationConfig_0rwas")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=385916573]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63519454, 0.016527414)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1584327384]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bfocnmf671574"]
+
+[ext_resource type="Script" uid="uid://dj5djyh56kqcd" path="res://scenes/main_menu.gd" id="1_qkhwq"]
+
+[node name="MainMenu" type="Control" unique_id=1604512711]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qkhwq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2071665208]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="VBoxContainer" unique_id=580351225]
+layout_mode = 2
+text = "Host"

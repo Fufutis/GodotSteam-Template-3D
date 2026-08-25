@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dy3fsjhwipvgt"]
+
+[ext_resource type="Script" uid="uid://b2uuj8dhlj6a0" path="res://scenes/game.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://kbh147qj4xd3" path="res://scenes/Player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://da60rsilx7b7c" path="res://scenes/pausemenu.tscn" id="3_lnu2h"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
+size = Vector2(40, 40)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_57qmd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(5.935, 5.34, 1.725)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(5.894, 5.248, 1.909)
+
+[node name="NetworkGame" type="Node3D" unique_id=1480457647]
+script = ExtResource("1_uwrxv")
+player_scene = ExtResource("2_yqjtg")
+
+[node name="Players" type="Node3D" parent="." unique_id=1939345223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1757364, 0)
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=246443388]
+_spawnable_scenes = PackedStringArray("uid://kbh147qj4xd3")
+spawn_path = NodePath("../Players")
+spawn_limit = 1000
+
+[node name="Furniture" type="Node3D" parent="." unique_id=1231600345]
+
+[node name="FurnitureSpawner" type="MultiplayerSpawner" parent="." unique_id=1092002362]
+_spawnable_scenes = PackedStringArray("uid://cbvvk7d3bpfia")
+spawn_path = NodePath("../Furniture")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=855496317]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=724973360]
+mesh = SubResource("PlaneMesh_yf5fn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1195334567]
+shape = SubResource("WorldBoundaryShape3D_57qmd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=944031574]
+transform = Transform3D(0.65350336, 0.7569236, 0, -0.6674252, 0.5762333, 0.4716977, 0.35703912, -0.30825603, 0.88176036, 0, 1.3921824, 0)
+
+[node name="PauseMenu" parent="." unique_id=1154151540 instance=ExtResource("3_lnu2h")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1386399946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.82768, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=132765212]
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=564394571]
+shape = SubResource("BoxShape3D_yf5fn")
